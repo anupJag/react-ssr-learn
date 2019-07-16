@@ -4,9 +4,10 @@
   "description": "Learning React SSR with Redux",
   "main": "index.js",
   "scripts": {
-    "dev:server" : "nodemon --watch build --exec \"node build/bundle.js\"",
-    "dev:build:server": "webpack --config webpack.server.js --watch",
-    "dev:build:client" : "webpack --config webpack.client.js --watch",
+    "dev": "npm-run-all --parallel dev:*",
+    "dev:build-server": "webpack --config webpack.server.js --watch",
+    "dev:build-client": "webpack --config webpack.client.js --watch",
+    "dev:server": "nodemon --watch build --exec \"node build/bundle.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Anupam Jagatdeo",
