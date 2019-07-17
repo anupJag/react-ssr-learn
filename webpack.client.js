@@ -1,7 +1,7 @@
 const path = require('path');
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base.js');
-const webpackNodeExt = require('webpack-node-externals');
+//const webpackNodeExt = require('webpack-node-externals');
 
 const config = {
     //Tell webpack the root file of our server application
@@ -12,7 +12,7 @@ const config = {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'public'),
     },
-    externals : [webpackNodeExt()]
+    //externals : [webpackNodeExt()]
 };
 
 module.exports = merge(baseConfig, config);
