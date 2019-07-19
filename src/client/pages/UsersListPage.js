@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchUsers } from '../actions';
 
 
-export default (props) => {
+const UserListPage = (props) => {
 
     //const dispatch = useDispatch();
     const users = useSelector(state => state.users);
@@ -30,6 +30,11 @@ export default (props) => {
     );
 }
 
-export const loadData = (store) => {
+const loadData = (store) => {
     return store.dispatch(fetchUsers());
+}
+
+export default {
+    loadData,
+    component: UserListPage
 }

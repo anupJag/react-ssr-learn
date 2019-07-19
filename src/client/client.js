@@ -10,7 +10,7 @@ import thunk from 'redux-thunk';
 import rootReducer from '../client/reducers';
 import { renderRoutes } from 'react-router-config';
 
-const clientStore = createStore(rootReducer, {}, applyMiddleware(thunk));
+const clientStore = createStore(rootReducer, window.INITIAL_STATE, applyMiddleware(thunk));
 
 
 ReactDOM.hydrate(
