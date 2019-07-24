@@ -5,10 +5,10 @@ import { fetchUsers } from '../actions';
 
 const UserListPage = (props) => {
 
-    //const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const users = useSelector(state => state.users);
 
-    //useEffect(() => dispatch(fetchUsers()), []);
+    useEffect(() => dispatch(fetchUsers()), []);
 
     const renderUserList = () => {
         return (
