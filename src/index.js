@@ -12,27 +12,38 @@ const PORT = process.env.PORT || 3000;
 
 
 app.use('/api', proxy('http://react-ssr-api.herokuapp.com', {
-    proxyReqOptDecorator(opts){
-        opts.headers['x-forward-host'] = 'localhost:3000';
+    proxyReqOptDecorator(opts) {
+        opts.headers['x-forwarded-host'] = 'localhost:3000';
         return opts;
     }
 }));
 app.use(express.static('public'));
 
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
+
+    console.log(`Requesting page: ${req.path}`)
 
     const store = createStore(req);
-
     const promises = matchRoutes(Routes, req.path).map(({ route }) => {
         return route.loadData && route.loadData(store);
-    });
+    }).map(promise => {
+        if (promise) {
+            return new Promise((resolve, reject) => {
+                promise.then(resolve).catch(resolve);
+            })
+        }
+    })
 
     Promise.all(promises).then(() => {
-        const html = renderer(req, store);
+        const context = {};
+        const html = renderer(req, store, context);
+        debugger;
+        if (context.notFound) {
+            res.status(404);
+        }
+
         res.send(html);
-    }).catch(error => {
-        console.log(error);
-    })
+    });
 });
 
 
