@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { fetchAdmins } from '../actions';
 import { useDispatch, useSelector } from 'react-redux';
+import requireAuth from '../components/hocs/requireAuth';
 
 const AdminPage = (props) => {
 
@@ -30,6 +31,6 @@ const AdminPage = (props) => {
 }
 
 export default {
-    component: AdminPage,
+    component: requireAuth(AdminPage),
     loadData: ({ dispatch }) => dispatch(fetchAdmins())
 }

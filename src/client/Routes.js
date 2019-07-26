@@ -28,3 +28,22 @@ export default [
     }
 ];
 
+// export default [
+//     {
+//         path: '/',
+//         exact: true,
+//         ...HomePage
+//     },
+//     {
+//         path: '/users',
+//         ...UsersList
+//     },
+//     {
+//         ...AdminsList,
+//         path: '/admins'
+//     },
+//     {
+//         ...NotFound
+//     },
+// ];
+
